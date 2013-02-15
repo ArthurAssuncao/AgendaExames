@@ -1,0 +1,38 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body{
+	color: #606060;
+	background: #ebebeb;
+}
+/* css sticky footer */
+/* http://css-tricks.com/snippets/css/sticky-footer/ */
+* {
+	margin:0;
+	padding:0;
+} 
+html, body, #wrapper {
+	height: 100%;
+}
+#principal{
+	margin: 0 8px 0 8px;
+}
+body > #wrapper {
+	height: auto; 
+	min-height: 100%;
+}
+
+#principal {
+	padding-bottom: 150px;
+}  /* must be same height as the footer */
+
+footer { 
+    position: relative;
+    margin-top: -150px; /* negative value of footer height */
+    height: 150px;
+    clear:both;
+    border-top: 1px solid #E5E5E5;
+    background-color: #dedede; /* era whiteSmoke */
+    width:100%;
+}

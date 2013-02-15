@@ -12,7 +12,7 @@ import com.arthurassuncao.dao.MedicoDAO;
  *
  * @author Arthur Assuncao
  */
-public class MedicoController {
+public class MedicoController implements IControllerDAO {
     private Medico medico;
     
     public MedicoController() {

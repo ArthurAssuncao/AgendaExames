@@ -17,14 +17,55 @@
         </ui:insert>
     </h:head>
     <h:body>
-        <ui:insert name="cabecalho">
-            <h1>Sistema de Agendamento de Exames</h1>
-        </ui:insert>
-        <ui:insert name="conteudo">
-            Aula de JSF 2.0 - criando templates de página
-        </ui:insert>
+        <div id='wrapper'>
+            <div class='clearfix' id='principal'>
+                <div class='container'>
+                    <ui:insert name="cabecalho">
+                        <h1>Sistema de Agendamento de Exames</h1>
+                    </ui:insert>
+                    <ui:insert name="conteudo">
+                        Aula de JSF 2.0 - criando templates de página
+                    </ui:insert>
+                </div>
+                <!--/conteudo-->
+                <!-- /div principal -->
+            </div>
+            <!-- /div wrapper -->
+        </div>
         <ui:insert name="rodape">
-            Arthur Assunção
+            <!-- RODAPÉ -->
+            <footer>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='span2 offset1'>
+                            <ul class='unstyled justify'>
+                                <h4>Links</h4>
+                                <small>
+                                    <li><a href='http://arthurassuncao.com'>Site</a></li>
+                                    <li><a href='http://github.com/arthurassuncao'>Repositórios no Github</a></li>
+                                    <li><a href='http://lattes.cnpq.br/8136835668168874'>Currículo Lattes</a></li>
+                                    <li><a href='http://www.youtube.com/arthurassuncao11'>Youtube</a></li>
+                                </small>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class='row links_secundarios'>
+                        <div class='span5'>
+                        </div>
+                        <div class='span4'>
+                            <small>
+                                <span id='copyright'>&#169; Arthur Assunção 2013</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
         </ui:insert>
+        <h:outputScript name="jquery.min.js" library="js" />
+        <h:outputScript name="bootstrap.min.js" library="js" />
+        <ui:insert name="js_adicional">
+        </ui:insert>
+
     </h:body>
 </html>
