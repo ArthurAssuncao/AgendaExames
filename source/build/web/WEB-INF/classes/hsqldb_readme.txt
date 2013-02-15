@@ -1,0 +1,1 @@
+HyperSQL v. 2.2.9 is the latest release in the 2.x series and should be used in preference to earlier 2.0 and 2.x releases.
