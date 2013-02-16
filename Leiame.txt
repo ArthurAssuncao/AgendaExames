@@ -14,4 +14,8 @@ java -cp .;hsqldb.jar org.hsqldb.util.DatabaseManager
 
 
 Links:
+Configurando o HSQL
 http://wiki.netbeans.org/HSQLDBenNetBeans
+
+Definindo permissoes
+http://netbeans.org/kb/docs/web/security-webapps_pt_BR.html

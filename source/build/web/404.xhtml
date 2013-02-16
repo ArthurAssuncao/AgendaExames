@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template/template.html">
+        <ui:define name="titulo_pagina">Página não encontrada - 404</ui:define>
+        <ui:define name="css_adicional">
+            <h:outputStylesheet name="prettify.css" library="css" />
+            <style>
+                #code_erro_404{
+                    font-size: 130%;
+                    z-index: 2;
+                }
+                #fundo{
+                    color: rgba(235, 235, 235, 0.5);
+                    position: absolute;
+                    z-index: 1;
+                    font-size: 2000%;
+                    padding-left: 50%;
+                    font-weight: bold;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            </style>
+        </ui:define>
+        <ui:define name="conteudo">
+            <span id="fundo" class="nao_selecionavel" >
+                404
+            </span>
+            <pre class="prettyprint lang-py">
+		<code id="code_erro_404">
+		
+		#!/usr/bin/python
+		#coding: utf-8
+		
+		import ERRO_404
+		if ERRO_404:
+		  print 'Ops, A página requisitada não foi encontrada'
+		  try:
+		    print 'Verifique se há erros na url e recarregue a página'
+		  except HTTPError:
+		    print '<a href="/" title="Home Page">Voltar à página inicial</a>'
+			
+			
+			
+			
+		</code>
+            </pre>
+        </ui:define>
+        <ui:define name="js_adicional">
+            <h:outputStylesheet name="prettify.js" library="js" />
+            <script>
+                $(document).ready(function() {
+                    prettyPrint();
+                });
+            </script>
+        </ui:define>
+    </ui:composition>
+
+</html>

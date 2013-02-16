@@ -7,14 +7,17 @@
         <h:outputStylesheet name="bootstrap.css" library="css" />
         <h:outputStylesheet name="bootstrap-responsive.css" library="css" />
         <h:outputStylesheet name="principal.css" library="css" />
+        <h:outputScript name="jquery.min.js" library="js" />
         <ui:insert name="css_adicional">
         </ui:insert>
         <meta content='width=1100' name='viewport'/>
         <meta content='Arthur Assunção' name='author'/>
         <meta content='©2013 Arthur Assunção' name='copyright'/>
-        <ui:insert name="titulo_pagina">
-            <title>Sistema de Agendamento de Exames - AgendaExames</title>
-        </ui:insert>
+        <title>
+            <ui:insert name="titulo_pagina">
+                Sistema de Agendamento de Exames - AgendaExames
+            </ui:insert>
+        </title>
     </h:head>
     <h:body>
         <div id='wrapper'>
@@ -62,7 +65,6 @@
             </footer>
 
         </ui:insert>
-        <h:outputScript name="jquery.min.js" library="js" />
         <h:outputScript name="bootstrap.min.js" library="js" />
         <ui:insert name="js_adicional">
         </ui:insert>

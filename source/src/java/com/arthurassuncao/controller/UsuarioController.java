@@ -3,6 +3,7 @@ package com.arthurassuncao.controller;
 import com.arthurassuncao.bean.Usuario;
 import com.arthurassuncao.dao.InterfaceDAO;
 import com.arthurassuncao.dao.UsuarioDAO;
+import java.io.Serializable;
 
 /**
  *
@@ -12,7 +13,7 @@ public class UsuarioController implements IControllerDAO{
     private Usuario usuario;
     
     public UsuarioController() {
-        usuario  = new Usuario();	
+        usuario  = new Usuario();
     }
     
     public boolean verificaLogin(){

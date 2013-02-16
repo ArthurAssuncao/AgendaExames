@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template/template.html">
+        <ui:define name="conteudo">
+            <h1>Login</h1>
+            <form action="j_security_check" method="POST">
+                Username:<input type="text" name="j_username" required="required" placeholder="Digite o seu username" /><br />
+                Password:<input type="password" name="j_password" required="required" placeholder="Digite a sua senha" /><br />
+                <input type="submit" value="Login" class="btn" />
+            </form>
+        </ui:define>
+    </ui:composition>
+</html>
+

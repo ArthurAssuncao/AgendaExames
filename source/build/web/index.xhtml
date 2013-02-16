@@ -14,14 +14,18 @@
                     <h:outputText id="senhaLabel" value="Senha:" />
                     <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true" />
                 </h:panelGrid>
-                <h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn"/>
-                <h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn"/>
+                <div class="span1"><h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn"/></div>
+                <div class="span2"><h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn"/></div>
             </h:form>
         </ui:define>
         <ui:define name="js_adicional">
             <script>
-                $("#formLogin\\:login").attr("placeholder", "Digite o seu username");
-                $("#formLogin\\:senha").attr("placeholder", "Digite a sua senha");
+                var campoLogin = $("#formLogin\\:login")
+                var campoSenha = $("#formLogin\\:senha")
+                campoLogin.attr("placeholder", "Digite o seu username");
+                campoLogin.attr("required", "required");
+                campoSenha.attr("placeholder", "Digite a sua senha");
+                campoSenha.attr("required", "required");
             </script>
         </ui:define>
     </ui:composition>
