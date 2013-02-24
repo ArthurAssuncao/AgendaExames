@@ -1,9 +1,10 @@
 package com.arthurassuncao.controller;
 
-import com.arthurassuncao.bean.Usuario;
-import com.arthurassuncao.dao.InterfaceDAO;
 import com.arthurassuncao.dao.UsuarioDAO;
-import java.io.Serializable;
+import com.arthurassuncao.model.Usuario;
+import java.util.Map;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -16,20 +17,42 @@ public class UsuarioController implements IControllerDAO{
         usuario  = new Usuario();
     }
     
-    public boolean verificaLogin(){
-        UsuarioDAO usuarioDao = new UsuarioDAO();
-        return usuarioDao.verificaLogin(usuario);
+    public Usuario getUsuarioLogado(){
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
+        if(sessao.containsKey("usuario")){
+            return ((Usuario)sessao.get("usuario"));
+        }
+        return null;
     }
     
-    public String salvar(){
-        boolean loginValido = verificaLogin();
+    public String verificaLogin(){
+        System.out.println("Fazendo login...");
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
+        if(usuarioDao.verificaLogin(usuario)){
+            System.out.println("Login correto");
+            sessao.put("usuario", usuario);
+            return "login_ok";
+        }
+        else{
+            System.out.println("Login incorreto");
+            FacesMessage msg = new FacesMessage("Login incorreto");
+            contexto.addMessage("form_login", msg);
+            return null;
+        }
+    }
+    
+    @Override
+    public boolean salvar(){
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        boolean loginValido = usuarioDao.verificaLogin(usuario);
         System.out.println(loginValido);
         if(!loginValido){
-            InterfaceDAO usuarioDao = new UsuarioDAO();
-            usuarioDao.salvar(usuario);
-            System.out.println("Insere usuario");
+            return usuarioDao.salvar(usuario);
         }
-        return "salvar";
+        return false;
     }
 
     public Usuario getUsuario() {

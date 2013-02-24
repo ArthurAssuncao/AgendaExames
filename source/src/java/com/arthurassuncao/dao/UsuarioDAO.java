@@ -4,7 +4,7 @@
  */
 package com.arthurassuncao.dao;
 
-import com.arthurassuncao.bean.Usuario;
+import com.arthurassuncao.model.Usuario;
 import com.arthurassuncao.util.ConexaoBD;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,15 +20,13 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
     public boolean verificaLogin(Usuario objeto) {
         session = ConexaoBD.getInstance();
-        Transaction transacao = null; //permite transacao com o BD 
-
         boolean exists = exists(objeto);
 
         return exists;
     }
 
     @Override
-    public void salvar(Usuario objeto) {
+    public boolean salvar(Usuario objeto) {
         session = ConexaoBD.getInstance();
         Transaction transacao = null; //permite transacao com o BD 
 
@@ -36,38 +34,39 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
             transacao = session.beginTransaction();
             session.save(objeto);
             transacao.commit();//faz a transacao
-        } catch (Exception e) {
+            return true;
+        }
+        catch (Exception e) {
             //cancela a transcao em caso de falha
             transacao.rollback();
-        } finally {
-            session.close();
         }
-
+        return false;
     }
-
-    @Override
-    public void consultar(Usuario objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void alterar(Usuario objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void excluir(Usuario objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Boolean exists(Usuario objeto) {
+    
+    public boolean exists(Usuario objeto) {
         session = ConexaoBD.getInstance();
-        Query query = session.createQuery("SELECT u FROM Usuario u WHERE u.nome=:nome");
+        Query query = session.createQuery("SELECT u FROM Usuario u WHERE u.nome=:nome AND senha=:senha");
         query.setParameter("nome", objeto.getNome());
+        query.setParameter("senha", objeto.getSenha());
         Usuario usuario = (Usuario)query.uniqueResult();
         if(usuario == null){
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Usuario consultar(Usuario objeto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean alterar(Usuario objeto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean excluir(Usuario objeto) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

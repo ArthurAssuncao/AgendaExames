@@ -21,50 +21,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
         <location>/faces/404.xhtml</location>
     </error-page>
-    <!-- Protected Areas -->
-    <security-constraint>
-        <display-name>AdminConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>Admin</web-resource-name>
-            <url-pattern>/faces/admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>ADMIN</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>UserConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>User</web-resource-name>
-            <url-pattern>/faces/user/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>ADMIN</role-name>
-            <role-name>USER</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <!-- Validation By Form -->
-    <!-- Allowed Roles -->
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>file</realm-name>
-        <form-login-config>
-            <form-login-page>/faces/login.xhtml</form-login-page>
-            <form-error-page>/faces/loginError.xhtml</form-error-page>
-        </form-login-config>
-    </login-config>
-    <security-role>
-        <role-name>ADMIN</role-name>
-    </security-role>
-    <security-role>
-        <role-name>USER</role-name>
-    </security-role>
 </web-app>

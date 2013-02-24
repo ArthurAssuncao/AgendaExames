@@ -10,7 +10,14 @@
     <managed-bean>
         <managed-bean-name>UsuarioController</managed-bean-name>
         <managed-bean-class>com.arthurassuncao.controller.UsuarioController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login_ok</from-outcome>
+            <to-view-id>faces/user/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

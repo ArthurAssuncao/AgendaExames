@@ -22,7 +22,32 @@
     <h:body>
         <div id='wrapper'>
             <div class='clearfix' id='principal'>
+                <ui:insert name="navbar">
+                    <div class="navbar navbar-fixed-top">
+                        <div class="navbar-inner">
+                            <div class="container">
+                                <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
+                                    <span class='icon-bar'></span>
+                                    <span class='icon-bar'></span>
+                                    <span class='icon-bar'></span>
+                                </a>
+                                <a class='brand' href='/'>AgendaExames</a>
+                                <div class='nav-collapse' id='barra_menu'>
+                                    <ul class='nav' id='nav'>
+                                        <li><a href='/'>Início</a></li>
+                                        <li><a href='http://blog.arthurassuncao.com/p/busca.html'>Agenda</a></li>
+                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Pacientes</a></li>
+                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Exame</a></li>
+                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Medicos</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ui:insert>
                 <div class='container'>
+                    <br />
+                    <br />
                     <ui:insert name="cabecalho">
                         <h1>Sistema de Agendamento de Exames</h1>
                     </ui:insert>

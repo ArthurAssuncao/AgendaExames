@@ -2,9 +2,13 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="404.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="login.xhtml" x="639" y="297" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="resources/lightbox/index.html" x="400" y="150" zoom="true"/>
-        <Node id="template/template.html" x="150" y="300" zoom="true"/>
+        <Node id="loginError.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="user/index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="resources/lightbox/index.html" x="1075" y="234" zoom="true"/>
+        <Node id="template/template.html" x="1111" y="264" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

@@ -4,7 +4,7 @@
  */
 package com.arthurassuncao.dao;
 
-import com.arthurassuncao.bean.Medico;
+import com.arthurassuncao.model.Medico;
 import com.arthurassuncao.util.ConexaoBD;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,7 +18,7 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
     private Session session;
 
     @Override
-    public void salvar(Medico objeto) {
+    public boolean salvar(Medico objeto) {
         session = ConexaoBD.getInstance();
         Transaction transacao = null; //permite transacao com o BD 
 
@@ -26,29 +26,27 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
             transacao = session.beginTransaction();
             session.save(objeto);
             transacao.commit();//faz a transacao
+            return true;
         }
         catch (Exception e) {
             //cancela a transcao em caso de falha
             transacao.rollback();
         }
-        finally {
-            session.close();
-        }
-
+        return false;
     }
 
     @Override
-    public void consultar(Medico objeto) {
+    public Medico consultar(Medico objeto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void alterar(Medico objeto) {
+    public boolean alterar(Medico objeto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void excluir(Medico objeto) {
+    public boolean excluir(Medico objeto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

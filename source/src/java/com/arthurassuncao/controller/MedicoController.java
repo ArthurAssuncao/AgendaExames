@@ -4,7 +4,7 @@
  */
 package com.arthurassuncao.controller;
 
-import com.arthurassuncao.bean.Medico;
+import com.arthurassuncao.model.Medico;
 import com.arthurassuncao.dao.InterfaceDAO;
 import com.arthurassuncao.dao.MedicoDAO;
 
@@ -19,9 +19,8 @@ public class MedicoController implements IControllerDAO {
         medico  = new Medico();	
     }
     
-    public String salvar(){
+    public boolean salvar(){
         InterfaceDAO medicoDao = new MedicoDAO();
-        medicoDao.salvar(medico);
-        return "salvar";
+        return medicoDao.salvar(medico);
     }
 }

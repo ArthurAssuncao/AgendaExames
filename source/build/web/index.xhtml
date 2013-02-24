@@ -6,22 +6,25 @@
     <ui:composition template="template/template.html">
         <ui:define name="conteudo">
             <h1>Login</h1>
-            <h:form id="formLogin">
+            <h:form id="form_login">
+                <fieldset>
                 <h5><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h5>
                 <h:panelGrid id="gridLoginSenha" columns="2">
-                    <h:outputText id="loginLabel" value="Login:"/>
+                    <h:outputText id="loginLabel" value="Login: "/> 
                     <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}"/>
-                    <h:outputText id="senhaLabel" value="Senha:" />
+                    <h:outputText id="senhaLabel" value="Senha: " /> 
                     <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true" />
+                    <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
                 </h:panelGrid>
+                </fieldset>
                 <div class="span1"><h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn"/></div>
                 <div class="span2"><h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn"/></div>
             </h:form>
         </ui:define>
         <ui:define name="js_adicional">
             <script>
-                var campoLogin = $("#formLogin\\:login")
-                var campoSenha = $("#formLogin\\:senha")
+                var campoLogin = $("#form_login\\:login")
+                var campoSenha = $("#form_login\\:senha")
                 campoLogin.attr("placeholder", "Digite o seu username");
                 campoLogin.attr("required", "required");
                 campoSenha.attr("placeholder", "Digite a sua senha");
