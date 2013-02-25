@@ -16,10 +16,10 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="cadastro_medico">
-                            <h:form id="form_cadastro_medico" styleClass="form-horizontal">            
+                            <h:form id="form_cadastro_medico" styleClass="form-horizontal">
                                 <fieldset>
                                     <legend>Cadastro de Médicos</legend>
-                                    <div class="control-group"> 
+                                    <div class="control-group">
                                         <label class="control-label required" for="form_cadastro_medico:nome">Nome: </label>
                                         <div class="controls">
                                             <h:inputText value="#{MedicoController.medico.nome}" id="nome" maxlength="60" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
@@ -36,7 +36,7 @@
                                     <div class="controls">
                                         <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
                                         <h:outputText value=" "/> 
-                                        <h:commandButton styleClass="btn" action="#{MedicoController.cadastrar()}" value="Cadastrar"/>
+                                        <h:commandButton styleClass="btn" action="#{MedicoController.salvar}" value="Cadastrar"/>
                                     </div>
                                 </div>
                             </h:form>

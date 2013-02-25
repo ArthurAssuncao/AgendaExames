@@ -19,5 +19,10 @@
     <property name="show_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
     <mapping class="com.arthurassuncao.model.Usuario"/>
+    <mapping class="com.arthurassuncao.model.Medico"/>
+    <mapping class="com.arthurassuncao.model.Agenda"/>
+    <mapping class="com.arthurassuncao.model.AgendaPK"/>
+    <mapping class="com.arthurassuncao.model.Exame"/>
+    <mapping class="com.arthurassuncao.model.Paciente"/>
   </session-factory>
 </hibernate-configuration>

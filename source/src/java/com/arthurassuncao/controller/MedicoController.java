@@ -4,9 +4,11 @@
  */
 package com.arthurassuncao.controller;
 
-import com.arthurassuncao.model.Medico;
 import com.arthurassuncao.dao.InterfaceDAO;
 import com.arthurassuncao.dao.MedicoDAO;
+import com.arthurassuncao.model.Medico;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,7 +25,18 @@ public class MedicoController implements IControllerDAO {
     @Override
     public boolean salvar() {
         InterfaceDAO medicoDao = new MedicoDAO();
-        return medicoDao.salvar(medico);
+        boolean salvou = medicoDao.salvar(medico);
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        FacesMessage msg;
+        if (salvou) {
+            msg = new FacesMessage("Médico cadastrado com sucesso");
+            contexto.addMessage("form_cadastro_medico", msg);
+            return true;
+        }
+        msg = new FacesMessage("Não foi possível cadastrar o Médico");
+        contexto.addMessage("form_cadastro_medico", msg);
+        return false;
+
     }
 
     public Medico getMedico() {

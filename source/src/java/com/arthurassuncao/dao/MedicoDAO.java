@@ -20,17 +20,18 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
     @Override
     public boolean salvar(Medico objeto) {
         session = ConexaoBD.getInstance();
-        Transaction transacao = null; //permite transacao com o BD 
+        Transaction transacao = null;
 
         try {
             transacao = session.beginTransaction();
             session.save(objeto);
-            transacao.commit();//faz a transacao
+            transacao.commit();
             return true;
         }
         catch (Exception e) {
-            //cancela a transcao em caso de falha
-            transacao.rollback();
+            if(transacao.isActive()){
+                transacao.rollback();
+            }
         }
         return false;
     }

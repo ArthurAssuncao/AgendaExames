@@ -12,7 +12,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
-CREATE DATABASE `dbExames`
+CREATE DATABASE `dbexames`
     CHARACTER SET 'latin1'
     COLLATE 'latin1_swedish_ci';
 
