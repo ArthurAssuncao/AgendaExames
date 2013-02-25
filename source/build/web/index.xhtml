@@ -12,13 +12,13 @@
                     <div class="control-group"> 
                         <label class="control-label required" for="form_login:login">Login: </label>
                         <div class="controls">
-                            <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" />
+                            <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" requiredMessage="Digite seu nome de usuario" /> <h:message for="login" styleClass="alert alert-error" />
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label required" for="form_login:senha">Senha: </label>
                         <div class="controls">
-                            <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true" />
+                            <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true"  requiredMessage="Digite sua senha" />  <h:message for="senha" styleClass="alert alert-error" />
                             <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
                         </div>
                     </div>
@@ -30,6 +30,7 @@
                         <h:commandLink id="botaoCadastrar" action="#{UsuarioController.salvar}" styleClass="btn"><i class="icon-plus"></i> Cadastrar</h:commandLink>
                     </div>
                 </div>
+                <br />
             </h:form>
         </ui:define>
         <ui:define name="js_adicional">
@@ -37,9 +38,7 @@
                 var campoLogin = $("#form_login\\:login")
                 var campoSenha = $("#form_login\\:senha")
                 campoLogin.attr("placeholder", "Digite o seu username");
-                campoLogin.attr("required", "required");
                 campoSenha.attr("placeholder", "Digite a sua senha");
-                campoSenha.attr("required", "required");
             </script>
         </ui:define>
     </ui:composition>
