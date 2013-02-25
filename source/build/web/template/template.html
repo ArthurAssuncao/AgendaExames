@@ -10,7 +10,7 @@
         <h:outputScript name="jquery.min.js" library="js" />
         <ui:insert name="css_adicional">
         </ui:insert>
-        <meta content='width=1100' name='viewport'/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta content='Arthur Assunção' name='author'/>
         <meta content='©2013 Arthur Assunção' name='copyright'/>
         <title>
@@ -31,14 +31,14 @@
                                     <span class='icon-bar'></span>
                                     <span class='icon-bar'></span>
                                 </a>
-                                <a class='brand' href='/'>AgendaExames</a>
+                                <h:link styleClass="brand" outcome='/index.xhtml' value="AgendaExames" />
                                 <div class='nav-collapse' id='barra_menu'>
                                     <ul class='nav' id='nav'>
-                                        <li><a href='/'>Início</a></li>
-                                        <li><a href='http://blog.arthurassuncao.com/p/busca.html'>Agenda</a></li>
-                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Pacientes</a></li>
-                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Exame</a></li>
-                                        <li><a href='http://lattes.cnpq.br/8136835668168874'>Medicos</a></li>
+                                        <li><h:link outcome='/index.xhtml'><i class="icon-home"></i> Início</h:link></li>
+                                        <li><h:link outcome='/user/agenda.xhtml'><i class="icon-book"></i> Agenda</h:link></li>
+                                        <li><h:link outcome='/user/paciente.xhtml'><i class="icon-user"></i> Paciente</h:link></li>
+                                        <li><h:link outcome='/user/exame.xhtml'><i class="icon-calendar"></i> Exame</h:link></li>
+                                        <li><h:link outcome='/user/medico.xhtml'><i class="icon-user"></i> Medico</h:link></li>
                                     </ul>
                                 </div>
                             </div>

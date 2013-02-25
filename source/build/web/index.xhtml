@@ -6,19 +6,30 @@
     <ui:composition template="template/template.html">
         <ui:define name="conteudo">
             <h1>Login</h1>
-            <h:form id="form_login">
+            <h5><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h5>
+            <h:form id="form_login" styleClass="form-horizontal">
                 <fieldset>
-                <h5><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h5>
-                <h:panelGrid id="gridLoginSenha" columns="2">
-                    <h:outputText id="loginLabel" value="Login: "/> 
-                    <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}"/>
-                    <h:outputText id="senhaLabel" value="Senha: " /> 
-                    <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true" />
-                    <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
-                </h:panelGrid>
+                    <div class="control-group"> 
+                        <label class="control-label required" for="form_login:login">Login: </label>
+                        <div class="controls">
+                            <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label required" for="form_login:senha">Senha: </label>
+                        <div class="controls">
+                            <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true" />
+                            <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
+                        </div>
+                    </div>
                 </fieldset>
-                <div class="span1"><h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn"/></div>
-                <div class="span2"><h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn"/></div>
+                <div class="control-group">
+                    <div class="controls">
+                        <h:commandLink id="botaoLogin" action="#{UsuarioController.verificaLogin}" styleClass="btn" ><i class="icon-ok"></i> Login</h:commandLink>
+                        <h:outputText value=" "/> 
+                        <h:commandLink id="botaoCadastrar" action="#{UsuarioController.salvar}" styleClass="btn"><i class="icon-plus"></i> Cadastrar</h:commandLink>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
         <ui:define name="js_adicional">

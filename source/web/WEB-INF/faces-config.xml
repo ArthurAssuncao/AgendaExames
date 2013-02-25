@@ -13,7 +13,7 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
+        <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>login_ok</from-outcome>
             <to-view-id>faces/user/index.xhtml</to-view-id>

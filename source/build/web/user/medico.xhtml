@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/template/template.html">
+        <ui:define name="cabecalho" />
+        <ui:define name="conteudo">
+            <div class="container well">
+                <div>
+                    <h2>Medico</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#cadastro_medico" data-toggle="tab"><i class="icon-plus"></i> Cadastrar Médicos</a></li>
+                        <li><a href="#listagem_medico" data-toggle="tab"><i class="icon-list-alt"></i> Listar Médicos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cadastro_medico">Cadastro de Medicos</div>
+                        <div class="tab-pane" id="listagem_medico">Listagem de Medicos</div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

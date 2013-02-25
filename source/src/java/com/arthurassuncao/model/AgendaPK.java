@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Arthur Assuncao
+ * @author Falcaoi3
  */
 @Embeddable
 public class AgendaPK implements Serializable {
