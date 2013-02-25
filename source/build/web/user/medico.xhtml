@@ -4,7 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/template/template.html">
-        <ui:define name="cabecalho" />
         <ui:define name="conteudo">
             <div class="container well">
                 <div>
@@ -16,11 +15,42 @@
                         <li><a href="#listagem_medico" data-toggle="tab"><i class="icon-list-alt"></i> Listar Médicos</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="cadastro_medico">Cadastro de Medicos</div>
+                        <div class="tab-pane active" id="cadastro_medico">
+                            <h:form id="form_cadastro_medico" styleClass="form-horizontal">            
+                                <fieldset>
+                                    <legend>Cadastro de Médicos</legend>
+                                    <div class="control-group"> 
+                                        <label class="control-label required" for="form_cadastro_medico:nome">Nome: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{MedicoController.medico.nome}" id="nome" maxlength="60" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_medico:crm">CRM: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{MedicoController.medico.crm}" id="crm" maxlength="15" required="true" requiredMessage="Digite o CRM" /> <h:message for="crm" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                                        <h:outputText value=" "/> 
+                                        <h:commandButton styleClass="btn" action="#{MedicoController.cadastrar()}" value="Cadastrar"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
                         <div class="tab-pane" id="listagem_medico">Listagem de Medicos</div>
                     </div>
                 </div>
             </div>
+        </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                add_atributo_form("form_cadastro_medico", "nome", "placeholder", "Digite o nome");
+                add_atributo_form("form_cadastro_medico", "crm", "placeholder", "Digite o crm");
+            </script>
         </ui:define>
     </ui:composition>
 </html>

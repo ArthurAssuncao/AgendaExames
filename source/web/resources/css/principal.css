@@ -48,3 +48,6 @@ form input[required] label:after, form input[required=required] label:after, for
 input.highlight, select.highlight, textarea.highlight {
     background-color: #ffc;
 }
+#conteudo{
+    display: none;
+}

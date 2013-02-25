@@ -48,12 +48,14 @@
                 <div class='container'>
                     <br />
                     <br />
-                    <ui:insert name="cabecalho">
-                        <h1>Sistema de Agendamento de Exames</h1>
-                    </ui:insert>
-                    <ui:insert name="conteudo">
-                        Aula de JSF 2.0 - criando templates de página
-                    </ui:insert>
+                    <div id="conteudo">
+                        <ui:insert name="cabecalho">
+
+                        </ui:insert>
+                        <ui:insert name="conteudo">
+                            Aula de JSF 2.0 - criando templates de página
+                        </ui:insert>
+                    </div>
                 </div>
                 <!--/conteudo-->
                 <!-- /div principal -->
@@ -91,6 +93,7 @@
 
         </ui:insert>
         <h:outputScript name="bootstrap.min.js" library="js" />
+        <h:outputScript name="principal.js" library="js" />
         <ui:insert name="js_adicional">
         </ui:insert>
 
