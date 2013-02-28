@@ -5,12 +5,13 @@ import com.arthurassuncao.model.Usuario;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 
 /**
  *
  * @author Arthur Assuncao
  */
-public class UsuarioController implements IControllerDAO {
+public class UsuarioController implements IControllerDAO<UsuarioController> {
 
     private Usuario usuario;
 
@@ -71,5 +72,20 @@ public class UsuarioController implements IControllerDAO {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @Override
+    public boolean alterar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String remover() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ListDataModel<UsuarioController> listar() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

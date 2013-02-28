@@ -7,14 +7,17 @@ package com.arthurassuncao.controller;
 import com.arthurassuncao.dao.InterfaceDAO;
 import com.arthurassuncao.dao.MedicoDAO;
 import com.arthurassuncao.model.Medico;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 
 /**
  *
  * @author Arthur Assuncao
  */
-public class MedicoController implements IControllerDAO {
+public class MedicoController implements IControllerDAO<MedicoController> {
 
     private Medico medico;
 
@@ -22,8 +25,16 @@ public class MedicoController implements IControllerDAO {
         medico = new Medico();
     }
 
+    private MedicoController(Medico medico) {
+        this.medico = medico;
+    }
+
     @Override
     public boolean salvar() {
+        System.out.println(medico);
+        if(medico.getIdMedico() != null){
+            return alterar();
+        }
         InterfaceDAO medicoDao = new MedicoDAO();
         boolean salvou = medicoDao.salvar(medico);
         FacesContext contexto = FacesContext.getCurrentInstance();
@@ -45,5 +56,45 @@ public class MedicoController implements IControllerDAO {
 
     public void setMedico(Medico medico) {
         this.medico = medico;
+    }
+
+    @Override
+    public ListDataModel<MedicoController> listar() {
+        MedicoDAO medicoDAO = new MedicoDAO();
+        List<MedicoController> medicosController = new ArrayList();
+
+        List<Medico> medicos = medicoDAO.findAll();
+        ListDataModel<MedicoController> listaMedicos = new ListDataModel<MedicoController>();
+
+        if (medicos != null) {
+            for (Medico med : medicos) {
+                medicosController.add(new MedicoController(med));
+            }
+            return new ListDataModel(medicosController);
+        } else {
+            return null;
+        }
+    }
+
+    public String alterarDados(Medico medico) {
+        this.medico = medico;
+        return "alterar_medico";
+    }
+
+    @Override
+    public boolean alterar() {
+        InterfaceDAO<Medico> medicoDao = new MedicoDAO();
+        return medicoDao.alterar(medico);
+    }
+
+    @Override
+    public String remover() {
+        InterfaceDAO<Medico> medicoDao = new MedicoDAO();
+        if (medicoDao.excluir(medico)) {
+            return "removeu_medico";
+        }
+        else {
+            return "nao_removeu_medico";
+        }
     }
 }

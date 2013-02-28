@@ -6,6 +6,8 @@ package com.arthurassuncao.dao;
 
 import com.arthurassuncao.model.Medico;
 import com.arthurassuncao.util.ConexaoBD;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,11 +31,34 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
             return true;
         }
         catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
             if(transacao.isActive()){
                 transacao.rollback();
             }
         }
+        finally{
+            session.close();
+        }
         return false;
+    }
+    
+    @Override
+    public List<Medico> findAll(){
+        try{
+            session = ConexaoBD.getInstance();
+            Query q = session.createQuery("SELECT m FROM Medico m");
+
+            List<Medico> medicos = q.list();
+  
+            return medicos;
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+        finally{
+            session.close();
+        }
     }
 
     @Override
@@ -43,11 +68,52 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
 
     @Override
     public boolean alterar(Medico objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        session = ConexaoBD.getInstance();
+        Transaction transacao = null;
+
+        try {
+            Medico med = (Medico)session.get(Medico.class, objeto.getIdMedico()); 
+            med.setCrm(objeto.getCrm());
+            med.setNome(objeto.getNome());
+            if(med != null){
+                transacao = session.beginTransaction();
+                session.update(med);
+                transacao.commit();
+                return true;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            if(transacao.isActive()){
+                transacao.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        return false;
     }
 
     @Override
     public boolean excluir(Medico objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        session = ConexaoBD.getInstance();
+        Transaction transacao = null;
+      
+        try {
+            transacao = session.beginTransaction();
+            session.delete(objeto);
+            transacao.commit();
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            if(transacao.isActive()){
+                transacao.rollback();
+            }
+        }
+        finally{
+            session.close();
+        }
+        return false;
     }
 }

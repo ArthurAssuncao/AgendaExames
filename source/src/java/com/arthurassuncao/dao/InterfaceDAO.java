@@ -4,6 +4,8 @@
  */
 package com.arthurassuncao.dao;
 
+import java.util.List;
+
 /**
  *
  * @author Arthur Assuncao
@@ -13,4 +15,5 @@ public interface InterfaceDAO<T> {
     public abstract T consultar(T objeto);
     public abstract boolean alterar(T objeto);
     public abstract boolean excluir(T objeto);
+    public abstract List<T> findAll();
 }

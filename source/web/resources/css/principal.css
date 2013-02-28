@@ -51,3 +51,6 @@ input.highlight, select.highlight, textarea.highlight {
 #conteudo{
     display: none;
 }
+.tabela_lista tbody tr:hover{
+    background-color: #dedede;
+}

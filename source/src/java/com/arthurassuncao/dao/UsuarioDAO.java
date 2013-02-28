@@ -6,6 +6,7 @@ package com.arthurassuncao.dao;
 
 import com.arthurassuncao.model.Usuario;
 import com.arthurassuncao.util.ConexaoBD;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,7 +39,13 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
         }
         catch (Exception e) {
             //cancela a transcao em caso de falha
-            transacao.rollback();
+            System.out.println("Erro: " + e.getMessage());
+            if(transacao.isActive()){
+                transacao.rollback();
+            }
+        }
+        finally{
+            session.close();
         }
         return false;
     }
@@ -48,9 +55,17 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
         Query query = session.createQuery("SELECT u FROM Usuario u WHERE u.nome=:nome AND senha=:senha");
         query.setParameter("nome", objeto.getNome());
         query.setParameter("senha", objeto.getSenha());
-        Usuario usuario = (Usuario)query.uniqueResult();
-        if(usuario == null){
-            return false;
+        try{
+            Usuario usuario = (Usuario)query.uniqueResult();
+            if(usuario == null){
+                return false;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        finally{
+            session.close();
         }
         return true;
     }
@@ -67,6 +82,11 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
     @Override
     public boolean excluir(Usuario objeto) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Usuario> findAll() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

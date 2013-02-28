@@ -3,9 +3,9 @@
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
 <faces-config version="2.0"
-    xmlns="http://java.sun.com/xml/ns/javaee" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
     <managed-bean>
         <managed-bean-name>UsuarioController</managed-bean-name>
@@ -23,6 +23,33 @@
             <from-outcome>login_ok</from-outcome>
             <to-view-id>faces/user/index.xhtml</to-view-id>
             <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user/medico.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>removeu_medico</from-outcome>
+            <to-view-id>/user/medico.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>true</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nao_removeu_medico</from-outcome>
+            <to-view-id>/user/medico.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>false</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterar_medico</from-outcome>
+            <to-view-id>/user/medico.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
