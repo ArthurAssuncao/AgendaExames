@@ -42,6 +42,7 @@ public class MedicoController implements IControllerDAO<MedicoController> {
         if (salvou) {
             msg = new FacesMessage("Médico cadastrado com sucesso");
             contexto.addMessage("form_cadastro_medico", msg);
+            medico = new Medico();
             return true;
         }
         msg = new FacesMessage("Não foi possível cadastrar o Médico");
