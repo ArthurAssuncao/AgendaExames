@@ -4,7 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="template/template.html">
-        <ui:define name="preprocessado"></ui:define>
         <ui:define name="conteudo">
             <div class="container well">
                 <h1>Sistema de Agendamento de Exames</h1><br />
@@ -22,7 +21,7 @@
                             <label class="control-label required" for="form_login:senha">Senha: </label>
                             <div class="controls">
                                 <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true"  requiredMessage="Digite sua senha" maxlength="50" />  <h:message for="senha" styleClass="alert alert-error" />
-                                <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
+                                <span></span>
                             </div>
                         </div>
                     </fieldset>
@@ -30,7 +29,7 @@
                         <div class="controls">
                             <h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn" />
                             <h:outputText value=" "/> 
-                            <h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn" />
+                            <h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn" /> <h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
                         </div>
                     </div>
                     <br />

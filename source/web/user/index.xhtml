@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/template/template.html">
         <ui:define name="conteudo">
-            <h1>Bem-vindo</h1>
+            <h1>Bem-vindo #{UsuarioController.usuarioLogado.nome}</h1>
         </ui:define>
     </ui:composition>
 </html>

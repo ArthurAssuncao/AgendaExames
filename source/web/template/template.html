@@ -47,6 +47,11 @@
                                         <li><h:link outcome='/user/exame.xhtml'><i class="icon-calendar icon-white"></i> Exame</h:link></li>
                                         <li><h:link outcome='/user/medico.xhtml'><i class="icon-user icon-white"></i> Medico</h:link></li>
                                         <li><h:link outcome='/user/consulta_relatorio.xhtml'><i class="icon-list-alt icon-white"></i> Relatório</h:link></li>
+
+                                        <h:form style="margin-top: 10px; margin-bottom: 0px" class="pull-right">
+                                            <h:commandLink action="#{UsuarioController.logout()}" ><i class="icon-off icon-white"></i> Sair</h:commandLink>
+                                        </h:form>
+
                                     </ul>
                                 </div>
                             </div>

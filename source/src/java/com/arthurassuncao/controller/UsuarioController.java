@@ -20,8 +20,8 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
     public UsuarioController() {
         usuario = new Usuario();
     }
-    
-    public UsuarioController(Usuario usuario){
+
+    public UsuarioController(Usuario usuario) {
         this.usuario = usuario;
     }
 
@@ -33,32 +33,40 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
         }
         return null;
     }
-    
-    public String verificaLogin(){
+
+    public void logout() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
+        if (sessao.containsKey("usuario")) {
+            sessao.remove("usuario");
+        }
+    }
+
+    public String verificaLogin() {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         FacesContext contexto = FacesContext.getCurrentInstance();
         Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
-        if(sessao.containsKey("usuario")){
+        ExternalContext contextoExterno = contexto.getExternalContext();
+        String url = contextoExterno.getRequestServletPath();
+        System.out.println("URL: " + url);
+        if (sessao.containsKey("usuario")) {
+            if (url.equals("/index.xhtml") || url.equals("/faces")) {
+                return "login_ok";
+            }
             return null;
-        }
-        else if(usuario.getNome() == null || usuario.getSenha() == null){
-            try{
-                ExternalContext contextoExterno = contexto.getExternalContext();
-                String url = contextoExterno.getRequestServletPath();
-                if(url.startsWith("/user/")){
+        } else if (usuario.getNome() == null || usuario.getSenha() == null) {
+            try {
+                if (url.startsWith("/user/")) {
                     contextoExterno.redirect("../index.xhtml");
                 }
-            }
-            catch(IOException e){
+            } catch (IOException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
             return null;
-        }
-        else if(usuarioDAO.verificaLogin(usuario)){
+        } else if (usuarioDAO.verificaLogin(usuario)) {
             sessao.put("usuario", usuario);
             return "login_ok";
-        }
-        else{
+        } else {
             FacesMessage msg = new FacesMessage("Login incorreto");
             contexto.addMessage("form_login", msg);
             return null;
@@ -109,7 +117,7 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
     public ListDataModel<UsuarioController> listar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public UsuarioController consultar(String chave) {
         throw new UnsupportedOperationException("Not supported yet.");

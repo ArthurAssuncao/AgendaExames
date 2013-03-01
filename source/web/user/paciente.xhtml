@@ -90,7 +90,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="form_cadastro_paciente:cidade">Cidade: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.cidade}" id="cidade" required="true" requiredMessage="Digite a cidade" >
+                                            <h:inputText value="#{PacienteController.paciente.cidade}" id="cidade" >
                                             </h:inputText> <h:message for="cidade" styleClass="alert alert-error" />
                                         </div>
                                     </div>
@@ -100,7 +100,9 @@
                                     <div class="controls">
                                         <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
                                         <h:outputText value=" "/> 
-                                        <h:commandButton styleClass="btn" action="#{PacienteController.salvar}" value="Cadastrar"/>
+                                        <h:commandButton styleClass="btn" action="#{PacienteController.salvar}" value="Cadastrar"/> 
+                                        <br /><br />
+                                        <h:message errorClass="error" for="form_cadastro_paciente" styleClass="alert alert-error" />
                                     </div>
                                 </div>
                             </h:form>

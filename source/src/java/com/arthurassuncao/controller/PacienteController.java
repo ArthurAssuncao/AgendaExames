@@ -40,7 +40,7 @@ public class PacienteController implements IControllerDAO<PacienteController, In
         FacesContext contexto = FacesContext.getCurrentInstance();
         FacesMessage msg;
         if (salvou) {
-            msg = new FacesMessage("Médico cadastrado com sucesso");
+            msg = new FacesMessage("Paciente cadastrado com sucesso");
             contexto.addMessage("form_cadastro_paciente", msg);
             paciente = new Paciente();
             return true;
