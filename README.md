@@ -12,8 +12,13 @@ Sistema de Agendamento de Exames Clínicos com as funções de cadastrar, altera
 
 ##Screenshots
 
+####Cadastrar Médico
 ![Cadastrar Médico](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_medico_cadastrar.png)
 
+
+####Listar Paciente
 ![Listar Paciente](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_paciente_listar.png)
 
-![Valor Total Exames](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_valor_total_exames.png)
+
+####Relatório - Valor Total Exames
+![Relatorio - Valor Total Exames](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_valor_total_exames.png)
