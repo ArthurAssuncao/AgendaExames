@@ -46,7 +46,7 @@ public class ExameDAO implements InterfaceDAO<Exame, Integer> {
     public List<Exame> findAll(){
         try{
             session = ConexaoBD.getInstance();
-            Query q = session.createQuery("SELECT e FROM Exame e");
+            Query q = session.createQuery("SELECT e FROM Exame e ORDER BY nome ASC");
 
             List<Exame> exames = q.list();
   

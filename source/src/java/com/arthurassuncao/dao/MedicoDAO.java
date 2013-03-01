@@ -46,7 +46,7 @@ public class MedicoDAO implements InterfaceDAO<Medico, Integer> {
     public List<Medico> findAll(){
         try{
             session = ConexaoBD.getInstance();
-            Query q = session.createQuery("SELECT m FROM Medico m");
+            Query q = session.createQuery("SELECT m FROM Medico m ORDER BY nome ASC");
 
             List<Medico> medicos = q.list();
   
