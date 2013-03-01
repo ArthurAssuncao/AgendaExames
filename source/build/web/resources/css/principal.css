@@ -54,3 +54,6 @@ input.highlight, select.highlight, textarea.highlight {
 .tabela_lista tbody tr:hover{
     background-color: #dedede;
 }
+input{
+    margin-right: 5px;
+}

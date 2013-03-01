@@ -2,21 +2,207 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template/template.html">
         <ui:define name="conteudo">
-            <h2>Medicos</h2>
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li>Cadastrar Medicos</li>
-                    <li>Listar Medicos</li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active">Cadastro de Medicos</div>
-                    <div class="tab-pane">Listagem de Medicos</div>
+            <div class="container well">
+                <div>
+                    <h2>Paciente</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="abas">
+                        <li class="active" id="aba_cadastro_paciente"><a href="#cadastro_paciente" data-toggle="tab"><i class="icon-plus"></i> Cadastrar Pacientes</a></li>
+                        <li id="aba_listagem_paciente"><a href="#listagem_paciente" data-toggle="tab"><i class="icon-list-alt"></i> Listar Pacientes</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cadastro_paciente">
+                            <h:form id="form_cadastro_paciente" styleClass="form-horizontal">
+                                <fieldset>
+                                    <legend>Cadastro de Pacientes</legend>
+                                    <h:inputHidden value="#{PacienteController.paciente.idPaciente}" id="idPaciente" />
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_paciente:nome">Nome: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.nome}" id="nome" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_paciente:data_nascimento">Data de Nascimento: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.dataNasc}" id="data_nascimento" required="true" requiredMessage="Digite a data de nascimento" >
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:inputText> <h:message for="data_nascimento" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="form_cadastro_paciente:logradouro">Logradouro: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.logradouro}" id="logradouro" /> <h:message for="logradouro" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="form_cadastro_paciente:numero">Número: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.numero}" id="numero" /> <h:message for="numero" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="form_cadastro_paciente:bairro">Bairro: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.bairro}" id="bairro" /> <h:message for="bairro" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="form_cadastro_paciente:estado">Estado: </label>
+                                        <div class="controls">
+                                            <h:selectOneMenu value="#{PacienteController.paciente.uf}" id="uf" >
+                                                <f:selectItem itemValue="AC" itemLabel="Acre"/>
+                                                <f:selectItem itemValue="AL" itemLabel="Alagoas"/>
+                                                <f:selectItem itemValue="AP" itemLabel="Amapá"/>
+                                                <f:selectItem itemValue="AM" itemLabel="Amazonas"/>
+                                                <f:selectItem itemValue="BA" itemLabel="Bahia"/>
+                                                <f:selectItem itemValue="CE" itemLabel="Ceará"/>
+                                                <f:selectItem itemValue="DF" itemLabel="Distrito Federal"/>
+                                                <f:selectItem itemValue="ES" itemLabel="Espírito Santo"/>
+                                                <f:selectItem itemValue="GO" itemLabel="Goiais"/>
+                                                <f:selectItem itemValue="MA" itemLabel="Maranhão"/>
+                                                <f:selectItem itemValue="MT" itemLabel="Mato Grosso"/>
+                                                <f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul"/>
+                                                <f:selectItem itemValue="MG" itemLabel="Minas Gerais"/>
+                                                <f:selectItem itemValue="PR" itemLabel="Paraná"/>
+                                                <f:selectItem itemValue="PB" itemLabel="Paraíba"/>
+                                                <f:selectItem itemValue="PA" itemLabel="Pará"/>
+                                                <f:selectItem itemValue="PE" itemLabel="Pernambuco"/>
+                                                <f:selectItem itemValue="PI" itemLabel="Piauí"/>
+                                                <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro"/>
+                                                <f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte"/>
+                                                <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
+                                                <f:selectItem itemValue="RO" itemLabel="Rondônia"/>
+                                                <f:selectItem itemValue="RR" itemLabel="Roraima"/>
+                                                <f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
+                                                <f:selectItem itemValue="SE" itemLabel="Sergipe"/>
+                                                <f:selectItem itemValue="SP" itemLabel="São Paulo"/>
+                                                <f:selectItem itemValue="TO" itemLabel="Tocantis"/>
+                                            </h:selectOneMenu> <h:message for="uf" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="form_cadastro_paciente:cidade">Cidade: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{PacienteController.paciente.cidade}" id="cidade" required="true" requiredMessage="Digite a cidade" >
+                                            </h:inputText> <h:message for="cidade" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    
+                                </fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                                        <h:outputText value=" "/> 
+                                        <h:commandButton styleClass="btn" action="#{PacienteController.salvar}" value="Cadastrar"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="tab-pane" id="listagem_paciente">
+                            <legend>Listagem de Pacientes</legend>
+                            <div>
+                                <h:form id="form_lista_pacientes">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{PacienteController.listar()}" var="pac" columnClasses="span1,,span3,,span1,span2,span2,span2,span1,span1">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.idPaciente}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Nome"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.nome}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Data de Nascimento"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.dataNasc}" >
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Cidade"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.cidade}" />
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="UF"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.uf}" />
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Logradouro"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.logradouro}" />
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Número"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.numero}" />
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Bairro"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pac.paciente.bairro}" />
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-small" action="#{PacienteController.alterarDados(pac.paciente)}" value="Editar"/>
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-danger btn-small" action="#{pac.remover()}" value="Apagar"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                function muda_aba(removeu){
+                    if(removeu != ""){
+                        $("#aba_cadastro_paciente").removeClass("active");
+                        $("#cadastro_paciente").removeClass("active");
+                        $("#aba_listagem_paciente").addClass("active");
+                        $("#listagem_paciente").addClass("active");
+                    }
+                }
+                $(document).ready(function () {
+                    muda_aba("#{param['removeu']}");
+                    add_mascara_form("form_cadastro_paciente", "data_nascimento", "99/99/9999");
+                });
+            </script>
+        </ui:define>
     </ui:composition>
 </html>
-

@@ -17,7 +17,7 @@ import javax.faces.model.ListDataModel;
  *
  * @author Arthur Assuncao
  */
-public class MedicoController implements IControllerDAO<MedicoController> {
+public class MedicoController implements IControllerDAO<MedicoController, Integer> {
 
     private Medico medico;
 
@@ -35,7 +35,7 @@ public class MedicoController implements IControllerDAO<MedicoController> {
         if(medico.getIdMedico() != null){
             return alterar();
         }
-        InterfaceDAO medicoDao = new MedicoDAO();
+        InterfaceDAO<Medico, Integer> medicoDao = new MedicoDAO();
         boolean salvou = medicoDao.salvar(medico);
         FacesContext contexto = FacesContext.getCurrentInstance();
         FacesMessage msg;
@@ -65,7 +65,6 @@ public class MedicoController implements IControllerDAO<MedicoController> {
         List<MedicoController> medicosController = new ArrayList();
 
         List<Medico> medicos = medicoDAO.findAll();
-        ListDataModel<MedicoController> listaMedicos = new ListDataModel<MedicoController>();
 
         if (medicos != null) {
             for (Medico med : medicos) {
@@ -84,18 +83,25 @@ public class MedicoController implements IControllerDAO<MedicoController> {
 
     @Override
     public boolean alterar() {
-        InterfaceDAO<Medico> medicoDao = new MedicoDAO();
+        InterfaceDAO<Medico, Integer> medicoDao = new MedicoDAO();
         return medicoDao.alterar(medico);
     }
 
     @Override
     public String remover() {
-        InterfaceDAO<Medico> medicoDao = new MedicoDAO();
+        InterfaceDAO<Medico, Integer> medicoDao = new MedicoDAO();
         if (medicoDao.excluir(medico)) {
             return "removeu_medico";
         }
         else {
             return "nao_removeu_medico";
         }
+    }
+
+    @Override
+    public MedicoController consultar(Integer chave) {
+        InterfaceDAO<Medico, Integer> medicoDao = new MedicoDAO();
+        Medico medico = medicoDao.consultar(chave);
+        return new MedicoController(medico);
     }
 }

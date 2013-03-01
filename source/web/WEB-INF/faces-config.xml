@@ -17,6 +17,22 @@
         <managed-bean-class>com.arthurassuncao.controller.MedicoController</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PacienteController</managed-bean-name>
+        <managed-bean-class>com.arthurassuncao.controller.PacienteController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ExameController</managed-bean-name>
+        <managed-bean-class>com.arthurassuncao.controller.ExameController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>AgendaController</managed-bean-name>
+        <managed-bean-class>com.arthurassuncao.controller.AgendaController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <!-- Medico -->
     <navigation-rule>
         <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
@@ -50,6 +66,90 @@
         <navigation-case>
             <from-outcome>alterar_medico</from-outcome>
             <to-view-id>/user/medico.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- paciente -->
+    <navigation-rule>
+        <from-view-id>/user/paciente.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>removeu_paciente</from-outcome>
+            <to-view-id>/user/paciente.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>true</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nao_removeu_paciente</from-outcome>
+            <to-view-id>/user/paciente.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>false</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterar_paciente</from-outcome>
+            <to-view-id>/user/paciente.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- Exame -->
+    <navigation-rule>
+        <from-view-id>/user/exame.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>removeu_exame</from-outcome>
+            <to-view-id>/user/exame.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>true</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nao_removeu_exame</from-outcome>
+            <to-view-id>/user/exame.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>false</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterar_exame</from-outcome>
+            <to-view-id>/user/exame.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- Agenda -->
+    <navigation-rule>
+        <from-view-id>/user/agenda.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>removeu_agenda</from-outcome>
+            <to-view-id>/user/agenda.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>true</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nao_removeu_agenda</from-outcome>
+            <to-view-id>/user/agenda.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>removeu</name>
+                    <value>false</value>
+                </view-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterar_agenda</from-outcome>
+            <to-view-id>/user/agenda.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

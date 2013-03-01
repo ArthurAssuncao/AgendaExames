@@ -2,21 +2,148 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template/template.html">
         <ui:define name="conteudo">
-            <h2>Medicos</h2>
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li>Cadastrar Medicos</li>
-                    <li>Listar Medicos</li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active">Cadastro de Medicos</div>
-                    <div class="tab-pane">Listagem de Medicos</div>
+            <div class="container well">
+                <div>
+                    <h2>Agenda</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="abas">
+                        <li class="active" id="aba_cadastro_agenda"><a href="#cadastro_agenda" data-toggle="tab"><i class="icon-plus"></i> Cadastrar Agendas</a></li>
+                        <li id="aba_listagem_agenda"><a href="#listagem_agenda" data-toggle="tab"><i class="icon-list-alt"></i> Listar Agendas</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cadastro_agenda">
+                            <h:form id="form_cadastro_agenda" styleClass="form-horizontal">
+                                <fieldset>
+                                    <legend>Cadastro de Agendas</legend>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:dataHora">Data e Hora: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{AgendaController.agendaPK.dataHora}" id="dataHora" >
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                            </h:inputText> <h:message for="dataHora" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:medico">Médico: </label>
+                                        <div class="controls">
+                                            <h:selectOneMenu value="#{AgendaController.agendaPK.idMedico}" id="medico">
+                                                <f:selectItems value="#{MedicoController.listar()}" var="med" itemLabel="#{med.medico.nome}" itemValue="#{med.medico.idMedico}"/>      
+                                            </h:selectOneMenu> <h:message for="medico" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:paciente">Paciente: </label>
+                                        <div class="controls">
+                                            <h:selectOneMenu value="#{AgendaController.agendaPK.idPaciente}" id="paciente" >  
+                                                <f:selectItems value="#{PacienteController.listar()}" var="pac" itemLabel="#{pac.paciente.nome}" itemValue="#{pac.paciente.idPaciente}"/>      
+                                            </h:selectOneMenu> <h:message for="paciente" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:exame">Exame: </label>
+                                        <div class="controls">
+                                            <h:selectOneMenu value="#{AgendaController.agendaPK.idExame}" id="exame" >  
+                                                <f:selectItems value="#{ExameController.listar()}" var="exa" itemLabel="#{exa.exame.nome}" itemValue="#{exa.exame.idExame}"/>      
+                                            </h:selectOneMenu> <h:message for="exame" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:obs">Obs.: </label>
+                                        <div class="controls">
+                                            <h:inputTextarea value="#{AgendaController.agenda.obs}" id="obs" rows="4" /> <h:message for="obs" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_agenda:resultado">Resultado: </label>
+                                        <div class="controls">
+                                            <h:inputTextarea value="#{AgendaController.agenda.resultado}" id="resultado" rows="4" /> <h:message for="resultado" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                                        <h:outputText value=" "/> 
+                                        <h:commandButton styleClass="btn" action="#{AgendaController.salvar}" value="Cadastrar"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="tab-pane" id="listagem_agenda">
+                            <legend>Listagem de Agendas</legend>
+                            <div>
+                                <h:form id="form_lista_agendas">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{AgendaController.listar()}" var="age" columnClasses="span2,,,,span1,span1">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Data"/>
+                                            </f:facet>
+                                            <h:outputText value="#{age.agenda.agendaPK.dataHora}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                            </h:outputText>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Médico"/>
+                                            </f:facet>
+                                            <h:outputText value="#{MedicoController.consultar(age.agenda.agendaPK.idMedico).medico.nome}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Exame"/>
+                                            </f:facet>
+                                            <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.nome}" />
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Paciente"/>
+                                            </f:facet>
+                                            <h:outputText value="#{PacienteController.consultar(age.agenda.agendaPK.idPaciente).paciente.nome}" />
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-small" action="#{AgendaController.alterarDados(age.agenda)}" value="Editar"/>
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-danger btn-small" action="#{age.remover()}" value="Apagar"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                function muda_aba(removeu){
+                    if(removeu != ""){
+                        $("#aba_cadastro_agenda").removeClass("active");
+                        $("#cadastro_agenda").removeClass("active");
+                        $("#aba_listagem_agenda").addClass("active");
+                        $("#listagem_agenda").addClass("active");
+                    }
+                }
+                $(document).ready(function () {
+                    muda_aba("#{param['removeu']}");
+                    add_mascara_form("form_cadastro_agenda", "dataHora", "99/99/9999 99:99") //dd/MM/yyyy HH:mm
+                });
+            </script>
+        </ui:define>
     </ui:composition>
 </html>
-

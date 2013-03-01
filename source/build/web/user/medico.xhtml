@@ -8,7 +8,7 @@
         <ui:define name="conteudo">
             <div class="container well">
                 <div>
-                    <h2>Medico</h2>
+                    <h2>Médico</h2>
                 </div>
                 <div class="tabbable tabs-left">
                     <ul class="nav nav-tabs" id="abas">
@@ -44,10 +44,10 @@
                             </h:form>
                         </div>
                         <div class="tab-pane" id="listagem_medico">
-                            <h4>Listagem de Medicos</h4>
+                            <legend>Listagem de Médicos</legend>
                             <div>
                                 <h:form id="form_lista_medicos">
-                                    <h:dataTable class="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{MedicoController.listar()}" var="med" columnClasses="span2,,,span1,span1">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{MedicoController.listar()}" var="med" columnClasses="span2,,,span1,span1">
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="ID"/>
@@ -72,13 +72,13 @@
                                         <h:column headerClass="coluna_vazia">
                                             <f:facet name="header">
                                             </f:facet>
-                                            <h:commandLink class="btn btn-small" action="#{MedicoController.alterarDados(med.medico)}" value="Editar"/>
+                                            <h:commandLink styleClass="btn btn-small" action="#{MedicoController.alterarDados(med.medico)}" value="Editar"/>
                                         </h:column>
 
                                         <h:column headerClass="coluna_vazia">
                                             <f:facet name="header">
                                             </f:facet>
-                                            <h:commandLink class="btn btn-danger btn-small" action="#{med.remover()}" value="Apagar"/>
+                                            <h:commandLink styleClass="btn btn-danger btn-small" action="#{med.remover()}" value="Apagar"/>
                                         </h:column>
 
                                     </h:dataTable>
@@ -101,7 +101,9 @@
                         $("#listagem_medico").addClass("active");
                     }
                 }
-                muda_aba("#{param['removeu']}");
+                $(document).ready(function () {
+                    muda_aba("#{param['removeu']}");
+                });
             </script>
         </ui:define>
     </ui:composition>

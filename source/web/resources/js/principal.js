@@ -10,3 +10,7 @@ function add_atributo_form(formulario, elemento, atributo, valor){
     var campo = $("#" + formulario + "\\:" + elemento);
     campo.attr(atributo, valor);
 }
+function add_mascara_form(formulario, elemento, mascara){
+    var campo = $("#" + formulario + "\\:" + elemento);
+    campo.mask(mascara);
+}

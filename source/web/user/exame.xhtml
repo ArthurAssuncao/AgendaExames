@@ -2,21 +2,110 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template/template.html">
         <ui:define name="conteudo">
-            <h2>Medicos</h2>
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li>Cadastrar Medicos</li>
-                    <li>Listar Medicos</li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active">Cadastro de Medicos</div>
-                    <div class="tab-pane">Listagem de Medicos</div>
+            <div class="container well">
+                <div>
+                    <h2>Exame</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="abas">
+                        <li class="active" id="aba_cadastro_exame"><a href="#cadastro_exame" data-toggle="tab"><i class="icon-plus"></i> Cadastrar Exames</a></li>
+                        <li id="aba_listagem_exame"><a href="#listagem_exame" data-toggle="tab"><i class="icon-list-alt"></i> Listar Exames</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cadastro_exame">
+                            <h:form id="form_cadastro_exame" styleClass="form-horizontal">
+                                <fieldset>
+                                    <legend>Cadastro de Exames</legend>
+                                    <h:inputHidden value="#{ExameController.exame.idExame}" id="idExame" />
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_exame:nome">Nome: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{ExameController.exame.nome}" id="nome" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_exame:valor">Valor: </label>
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                            <span class="add-on">R$</span>
+                                            <h:inputText value="#{ExameController.exame.valor}" id="valor" required="true" style="width: 88%"/> <h:message for="valor" styleClass="alert alert-error" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                                        <h:outputText value=" "/> 
+                                        <h:commandButton styleClass="btn" action="#{ExameController.salvar}" value="Cadastrar"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="tab-pane" id="listagem_exame">
+                            <legend>Listagem de Exames</legend>
+                            <div>
+                                <h:form id="form_lista_exames">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{ExameController.listar()}" var="exa" columnClasses="span2,,,span1,span1">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{exa.exame.idExame}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Nome"/>
+                                            </f:facet>
+                                            <h:outputText value="#{exa.exame.nome}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Valor"/>
+                                            </f:facet>
+                                            <h:outputText value="#{exa.exame.valor}" />
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-small" action="#{ExameController.alterarDados(exa.exame)}" value="Editar"/>
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-danger btn-small" action="#{exa.remover()}" value="Apagar"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                function muda_aba(removeu){
+                    if(removeu != ""){
+                        $("#aba_cadastro_exame").removeClass("active");
+                        $("#cadastro_exame").removeClass("active");
+                        $("#aba_listagem_exame").addClass("active");
+                        $("#listagem_exame").addClass("active");
+                    }
+                }
+                $(document).ready(function () {
+                    muda_aba("#{param['removeu']}");
+                });
+            </script>
+        </ui:define>
     </ui:composition>
 </html>
-

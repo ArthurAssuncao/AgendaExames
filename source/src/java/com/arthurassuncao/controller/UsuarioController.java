@@ -11,12 +11,16 @@ import javax.faces.model.ListDataModel;
  *
  * @author Arthur Assuncao
  */
-public class UsuarioController implements IControllerDAO<UsuarioController> {
+public class UsuarioController implements IControllerDAO<UsuarioController, String> {
 
     private Usuario usuario;
 
     public UsuarioController() {
         usuario = new Usuario();
+    }
+    
+    public UsuarioController(Usuario usuario){
+        this.usuario = usuario;
     }
 
     public Usuario getUsuarioLogado() {
@@ -86,6 +90,11 @@ public class UsuarioController implements IControllerDAO<UsuarioController> {
 
     @Override
     public ListDataModel<UsuarioController> listar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public UsuarioController consultar(String chave) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

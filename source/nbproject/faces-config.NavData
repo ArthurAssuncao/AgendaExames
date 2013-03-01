@@ -10,10 +10,11 @@
         <Node id="404.xhtml" x="400" y="300" zoom="true"/>
         <Node id="faces/user/index.xhtml" x="400" y="150" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="user/relatorio.xhtml" x="650" y="300" zoom="true"/>
         <Node id="user/paciente.xhtml" x="150" y="450" zoom="true"/>
         <Node id="resources/lightbox/index.html" x="1075" y="234" zoom="true"/>
-        <Node id="template/template.html" x="1111" y="264" zoom="true"/>
         <Node id="user/medico.xhtml" x="403" y="453" zoom="true"/>
+        <Node id="template/template.html" x="1111" y="264" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

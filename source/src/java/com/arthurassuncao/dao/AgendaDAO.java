@@ -4,7 +4,8 @@
  */
 package com.arthurassuncao.dao;
 
-import com.arthurassuncao.model.Medico;
+import com.arthurassuncao.model.Agenda;
+import com.arthurassuncao.model.AgendaPK;
 import com.arthurassuncao.util.ConexaoBD;
 import java.util.List;
 import org.hibernate.Query;
@@ -15,18 +16,18 @@ import org.hibernate.Transaction;
  *
  * @author Arthur Assuncao
  */
-public class MedicoDAO implements InterfaceDAO<Medico, Integer> {
+public class AgendaDAO implements InterfaceDAO<Agenda, AgendaPK> {
 
     private Session session;
 
     @Override
-    public boolean salvar(Medico objeto) {
+    public boolean salvar(Agenda objeto) {
         session = ConexaoBD.getInstance();
         Transaction transacao = null;
 
         try {
             transacao = session.beginTransaction();
-            session.save(objeto);
+            session.saveOrUpdate(objeto);
             transacao.commit();
             return true;
         }
@@ -43,14 +44,14 @@ public class MedicoDAO implements InterfaceDAO<Medico, Integer> {
     }
     
     @Override
-    public List<Medico> findAll(){
+    public List<Agenda> findAll(){
         try{
             session = ConexaoBD.getInstance();
-            Query q = session.createQuery("SELECT m FROM Medico m");
+            Query q = session.createQuery("SELECT a FROM Agenda a");
 
-            List<Medico> medicos = q.list();
+            List<Agenda> agendas = q.list();
   
-            return medicos;
+            return agendas;
         }
         catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
@@ -62,34 +63,25 @@ public class MedicoDAO implements InterfaceDAO<Medico, Integer> {
     }
 
     @Override
-    public Medico consultar(Integer chave) {
-        session = ConexaoBD.getInstance();
-
-        Medico med = null;
-        try {
-            med = (Medico)session.get(Medico.class, chave); 
-        }
-        catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-        finally{
-            session.close();
-        }
-        return med;
+    public Agenda consultar(AgendaPK objeto) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean alterar(Medico objeto) {
+    public boolean alterar(Agenda objeto) {
         session = ConexaoBD.getInstance();
         Transaction transacao = null;
 
         try {
-            Medico med = (Medico)session.get(Medico.class, objeto.getIdMedico()); 
-            med.setCrm(objeto.getCrm());
-            med.setNome(objeto.getNome());
-            if(med != null){
+            Agenda age = (Agenda)session.get(Agenda.class, objeto.getAgendaPK()); 
+            age.setExame(objeto.getExame());
+            age.setMedico(objeto.getMedico());
+            age.setObs(objeto.getObs());
+            age.setPaciente(objeto.getPaciente());
+            age.setResultado(objeto.getResultado());
+            if(age != null){
                 transacao = session.beginTransaction();
-                session.update(med);
+                session.update(age);
                 transacao.commit();
                 return true;
             }
@@ -107,7 +99,7 @@ public class MedicoDAO implements InterfaceDAO<Medico, Integer> {
     }
 
     @Override
-    public boolean excluir(Medico objeto) {
+    public boolean excluir(Agenda objeto) {
         session = ConexaoBD.getInstance();
         Transaction transacao = null;
       

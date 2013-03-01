@@ -24,7 +24,7 @@
         <div id='wrapper'>
             <div class='clearfix' id='principal'>
                 <ui:insert name="navbar">
-                    <div class="navbar navbar-fixed-top">
+                    <div class="navbar navbar-inverse navbar-fixed-top">
                         <div class="navbar-inner">
                             <div class="container">
                                 <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
@@ -35,11 +35,12 @@
                                 <h:link styleClass="brand" outcome='/index.xhtml' value="AgendaExames" />
                                 <div class='nav-collapse' id='barra_menu'>
                                     <ul class='nav' id='nav'>
-                                        <li><h:link outcome='/index.xhtml'><i class="icon-home"></i> Início</h:link></li>
-                                        <li><h:link outcome='/user/agenda.xhtml'><i class="icon-book"></i> Agenda</h:link></li>
-                                        <li><h:link outcome='/user/paciente.xhtml'><i class="icon-user"></i> Paciente</h:link></li>
-                                        <li><h:link outcome='/user/exame.xhtml'><i class="icon-calendar"></i> Exame</h:link></li>
-                                        <li><h:link outcome='/user/medico.xhtml'><i class="icon-user"></i> Medico</h:link></li>
+                                        <li><h:link outcome='/index.xhtml'><i class="icon-home icon-white"></i> Início</h:link></li>
+                                        <li><h:link outcome='/user/agenda.xhtml'><i class="icon-book icon-white"></i> Agenda</h:link></li>
+                                        <li><h:link outcome='/user/paciente.xhtml'><i class="icon-user icon-white"></i> Paciente</h:link></li>
+                                        <li><h:link outcome='/user/exame.xhtml'><i class="icon-calendar icon-white"></i> Exame</h:link></li>
+                                        <li><h:link outcome='/user/medico.xhtml'><i class="icon-user icon-white"></i> Medico</h:link></li>
+                                        <li><h:link outcome='/user/relatorio.xhtml'><i class="icon-list-alt icon-white"></i> Relatório</h:link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -96,6 +97,7 @@
         <h:outputScript name="bootstrap.min.js" library="js" />
         <h:outputScript name="jquery_tablesorter/jquery.tablesorter.min.js" library="js" />
         <h:outputScript name="jquery_tablesorter/jquery.metadata.js" library="js" />
+        <h:outputScript name="jquery.maskedinput.min.js" library="js" />
         <h:outputScript name="principal.js" library="js" />
         <ui:insert name="js_adicional">
         </ui:insert>

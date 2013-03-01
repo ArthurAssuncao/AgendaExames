@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  *
  * @author Arthur Assuncao
  */
-public class UsuarioDAO implements InterfaceDAO<Usuario> {
+public class UsuarioDAO implements InterfaceDAO<Usuario, String> {
 
     private Session session;
 
@@ -71,7 +71,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
     }
 
     @Override
-    public Usuario consultar(Usuario objeto) {
+    public Usuario consultar(String objeto) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
