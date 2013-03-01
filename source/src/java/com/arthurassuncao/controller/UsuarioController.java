@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -35,6 +36,7 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
     }
 
     public void logout() {
+        System.out.println("Logout");
         FacesContext contexto = FacesContext.getCurrentInstance();
         Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
         if (sessao.containsKey("usuario")) {
@@ -47,16 +49,17 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
         FacesContext contexto = FacesContext.getCurrentInstance();
         Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
         ExternalContext contextoExterno = contexto.getExternalContext();
-        String url = contextoExterno.getRequestServletPath();
+        //String url = contextoExterno.getRequestServletPath();
+        String url = ((HttpServletRequest)contextoExterno.getRequest()).getRequestURI();
         System.out.println("URL: " + url);
         if (sessao.containsKey("usuario")) {
-            if (url.equals("/index.xhtml") || url.equals("/faces")) {
+            if (url.equals("/agendaexames/index.xhtml") || url.equals("/agendaexames/faces/index.xhtml") || url.equals("/agendaexames/")) {
                 return "login_ok";
             }
             return null;
         } else if (usuario.getNome() == null || usuario.getSenha() == null) {
             try {
-                if (url.startsWith("/user/")) {
+                if (url.startsWith("/agendaexames/faces/user/")) {
                     contextoExterno.redirect("../index.xhtml");
                 }
             } catch (IOException e) {
