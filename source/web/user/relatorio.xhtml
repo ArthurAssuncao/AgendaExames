@@ -88,12 +88,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="Valor R$"/>
                                     </f:facet>
-                                    <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.valor}"/>
-                                    <!--<h:inputHidden value="#{RelatorioController.addTotal(ExameController.consultar(age.agenda.agendaPK.idExame).exame.valor)}" />-->
+                                    <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.valor}">
+                                        <f:convertNumber maxFractionDigits="3" minFractionDigits="2" minIntegerDigits="1" maxIntegerDigits="6" groupingUsed="false" />
+                                    </h:outputText>
                                 </h:column>
 
                                 <f:facet name="footer">
-                                    <h:outputLabel styleClass="pull-right span2" value="Total: #{RelatorioController.total}"/>
+                                    <div class="pull-right span2">
+                                        Total: <h:outputText value="#{RelatorioController.total}">
+                                            <f:convertNumber maxFractionDigits="3" minFractionDigits="2" minIntegerDigits="1" maxIntegerDigits="6" groupingUsed="false" />
+                                        </h:outputText>
+                                    </div>
                                 </f:facet>
 
                             </h:dataTable>
