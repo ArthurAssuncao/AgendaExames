@@ -40,7 +40,7 @@ footer {
 form[required], form[required=required], form .required {
     font-weight: bold;
 }
-form input[required] label:after, form input[required=required] label:after, form .required label:after{
+form input[required] label:after, form input[required=required] label:after, form label.required:after{
     color: #e32;
     content: '*';
     display: inline;

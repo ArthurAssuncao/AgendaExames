@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:insert name="preprocessado">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{UsuarioController.verificaLogin()}"/>
+        </f:metadata>  
+    </ui:insert>
     <h:head>
         <h:outputStylesheet name="reset.css" library="css" />
         <h:outputStylesheet name="bootstrap.css" library="css" />

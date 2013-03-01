@@ -71,7 +71,8 @@ public class MedicoController implements IControllerDAO<MedicoController, Intege
                 medicosController.add(new MedicoController(med));
             }
             return new ListDataModel(medicosController);
-        } else {
+        }
+        else {
             return null;
         }
     }

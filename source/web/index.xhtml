@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="template/template.html">
+        <ui:define name="preprocessado"></ui:define>
         <ui:define name="conteudo">
             <div class="container well">
                 <h1>Sistema de Agendamento de Exames</h1><br />
@@ -27,9 +28,9 @@
                     </fieldset>
                     <div class="control-group">
                         <div class="controls">
-                            <h:commandLink id="botaoLogin" action="#{UsuarioController.verificaLogin}" styleClass="btn" ><i class="icon-ok"></i> Login</h:commandLink>
+                            <h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn" />
                             <h:outputText value=" "/> 
-                            <h:commandLink id="botaoCadastrar" action="#{UsuarioController.salvar}" styleClass="btn"><i class="icon-plus"></i> Cadastrar</h:commandLink>
+                            <h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn" />
                         </div>
                     </div>
                     <br />

@@ -2,8 +2,10 @@ package com.arthurassuncao.controller;
 
 import com.arthurassuncao.dao.UsuarioDAO;
 import com.arthurassuncao.model.Usuario;
+import java.io.IOException;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 
@@ -31,17 +33,32 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
         }
         return null;
     }
-
-    public String verificaLogin() {
-        UsuarioDAO usuarioDao = new UsuarioDAO();
+    
+    public String verificaLogin(){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
         FacesContext contexto = FacesContext.getCurrentInstance();
         Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
-        if (usuarioDao.verificaLogin(usuario)) {
-            System.out.println("Login correto");
+        if(sessao.containsKey("usuario")){
+            return null;
+        }
+        else if(usuario.getNome() == null || usuario.getSenha() == null){
+            try{
+                ExternalContext contextoExterno = contexto.getExternalContext();
+                String url = contextoExterno.getRequestServletPath();
+                if(url.startsWith("/user/")){
+                    contextoExterno.redirect("../index.xhtml");
+                }
+            }
+            catch(IOException e){
+                System.out.println("Erro: " + e.getMessage());
+            }
+            return null;
+        }
+        else if(usuarioDAO.verificaLogin(usuario)){
             sessao.put("usuario", usuario);
             return "login_ok";
-        } else {
-            System.out.println("Login incorreto");
+        }
+        else{
             FacesMessage msg = new FacesMessage("Login incorreto");
             contexto.addMessage("form_login", msg);
             return null;
