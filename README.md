@@ -2,7 +2,7 @@
 
 Sistema de Agendamento de Exames Clínicos com as funções de cadastrar, alterar e excluir médico, exame e paciente, além de permitir o agendamento de exames e salvar o diagnóstico do exame.
 
-Leia-me:
+##Leia-me:
 1. Instale o MySQL.
 2. Execute o banco de dados "dbExames.sql" do diretório "db_sql".
 3. Modifique o arquivo "hibernate.cfg.xml" do diretório "source\src\java" com os dados do bando de dados.
@@ -13,3 +13,7 @@ Leia-me:
 ##Screenshots
 
 ![Cadastrar Médico](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_medico_cadastrar.png)
+
+![Listar Paciente](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_paciente_listar.png)
+
+![Valor Total Exames](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_valor_total_exames.png)
