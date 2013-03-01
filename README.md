@@ -12,4 +12,4 @@ Leia-me:
 
 ##Screenshots
 
-![Cadastrar Médico](https://github.com/ArthurAssuncao/AgendaExames/blob/master/screenshots/tela_medico_cadastrar.png)
+![Cadastrar Médico](https://raw.github.com/ArthurAssuncao/AgendaExames/master/screenshots/tela_medico_cadastrar.png)
