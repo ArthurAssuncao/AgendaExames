@@ -41,6 +41,7 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
         Map<String, Object> sessao = contexto.getExternalContext().getSessionMap();
         if (sessao.containsKey("usuario")) {
             sessao.remove("usuario");
+            this.usuario = new Usuario();
         }
     }
 
@@ -51,16 +52,18 @@ public class UsuarioController implements IControllerDAO<UsuarioController, Stri
         ExternalContext contextoExterno = contexto.getExternalContext();
         //String url = contextoExterno.getRequestServletPath();
         String url = ((HttpServletRequest)contextoExterno.getRequest()).getRequestURI();
+        String urlContexto = contextoExterno.getRequestContextPath();
+        System.out.println("urlContexto: " + urlContexto);
         System.out.println("URL: " + url);
         if (sessao.containsKey("usuario")) {
-            if (url.equals("/agendaexames/index.xhtml") || url.equals("/agendaexames/faces/index.xhtml") || url.equals("/agendaexames/")) {
+            if (url.equals(urlContexto + "/index.xhtml") || url.equals(urlContexto + "/faces/index.xhtml") || url.equals(urlContexto + "/")) {
                 return "login_ok";
             }
             return null;
         } else if (usuario.getNome() == null || usuario.getSenha() == null) {
             try {
-                if (url.startsWith("/agendaexames/faces/user/")) {
-                    contextoExterno.redirect("../index.xhtml");
+                if (url.startsWith(urlContexto + "/faces/user/") || url.startsWith(urlContexto + "/user/")) {
+                    contextoExterno.redirect(urlContexto + "/index.xhtml");
                 }
             } catch (IOException e) {
                 System.out.println("Erro: " + e.getMessage());
