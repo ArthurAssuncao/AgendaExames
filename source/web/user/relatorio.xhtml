@@ -94,10 +94,10 @@
                                 </h:column>
 
                                 <f:facet name="footer">
-                                    <div class="pull-right span2">
-                                        Total: <h:outputText value="#{RelatorioController.total}">
+                                    <div class="input-prepend pull-right span2">
+                                        <span class="add-on">Total: </span><h:inputText styleClass="input-small" readonly="true" value="#{RelatorioController.total}">
                                             <f:convertNumber maxFractionDigits="3" minFractionDigits="2" minIntegerDigits="1" maxIntegerDigits="6" groupingUsed="false" />
-                                        </h:outputText>
+                                        </h:inputText>
                                     </div>
                                 </f:facet>
 
