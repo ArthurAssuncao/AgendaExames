@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label required" for="form_cadastro_agenda:obs">Obs.: </label>
+                                        <label class="control-label" for="form_cadastro_agenda:obs">Obs.: </label>
                                         <div class="controls">
                                             <h:inputTextarea value="#{AgendaController.agenda.obs}" id="obs" rows="4" /> <h:message for="obs" styleClass="alert alert-error" />
                                         </div>
@@ -61,7 +61,7 @@
                                     <div class="control-group">
                                         <label class="control-label required" for="form_cadastro_agenda:resultado">Resultado: </label>
                                         <div class="controls">
-                                            <h:inputTextarea value="#{AgendaController.agenda.resultado}" id="resultado" rows="4" /> <h:message for="resultado" styleClass="alert alert-error" />
+                                            <h:inputTextarea value="#{AgendaController.agenda.resultado}" id="resultado" rows="4" required="true" requiredMessage="Digite o resultado" /> <h:message for="resultado" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                 </fieldset>
@@ -78,7 +78,7 @@
                             <legend>Listagem de Agendas</legend>
                             <div>
                                 <h:form id="form_lista_agendas">
-                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{AgendaController.listar()}" var="age" columnClasses="span2,,,,span1,span1">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{AgendaController.listar()}" var="age" columnClasses="span2,,,,span1">
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Data"/>
@@ -112,12 +112,6 @@
                                         <h:column headerClass="coluna_vazia">
                                             <f:facet name="header">
                                             </f:facet>
-                                            <h:commandLink styleClass="btn btn-small" action="#{AgendaController.alterarDados(age.agenda)}" value="Editar"/>
-                                        </h:column>
-
-                                        <h:column headerClass="coluna_vazia">
-                                            <f:facet name="header">
-                                            </f:facet>
                                             <h:commandLink styleClass="btn btn-danger btn-small" action="#{age.remover()}" value="Apagar"/>
                                         </h:column>
 
@@ -141,7 +135,8 @@
                 }
                 $(document).ready(function () {
                     muda_aba("#{param['removeu']}");
-                    add_mascara_form("form_cadastro_agenda", "dataHora", "99/99/9999 99:99") //dd/MM/yyyy HH:mm
+                    add_mascara_form("form_cadastro_agenda", "dataHora", "99/99/9999 99:99"); //dd/MM/yyyy HH:mm
+                    add_atributo_form("form_cadastro_agenda", "dataHora", "placeholder", "dd/mm/aaaa hh:mm"); //dd/MM/yyyy HH:mm
                 });
             </script>
         </ui:define>

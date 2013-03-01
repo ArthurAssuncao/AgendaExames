@@ -32,6 +32,11 @@
         <managed-bean-class>com.arthurassuncao.controller.AgendaController</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>RelatorioController</managed-bean-name>
+        <managed-bean-class>com.arthurassuncao.controller.RelatorioController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     <!-- Medico -->
     <navigation-rule>
         <from-view-id>index.xhtml</from-view-id>
@@ -150,6 +155,13 @@
         <navigation-case>
             <from-outcome>alterar_agenda</from-outcome>
             <to-view-id>/user/agenda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user/consulta_relatorio.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>consultar_relatorio</from-outcome>
+            <to-view-id>/user/relatorio.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

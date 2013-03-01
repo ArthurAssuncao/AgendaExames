@@ -2,21 +2,117 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template/template.html">
         <ui:define name="conteudo">
-            <h2>Medicos</h2>
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li>Cadastrar Medicos</li>
-                    <li>Listar Medicos</li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active">Cadastro de Medicos</div>
-                    <div class="tab-pane">Listagem de Medicos</div>
+            <div class="container well">
+                <div>
+                    <h2>Exame</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="abas">
+                        <li class="active" id="aba_exames_realizados"><a href="#exames_realizados" data-toggle="tab"><i class="icon-list-alt"></i> Exames Realizados</a></li>
+                        <li id="aba_valor_total_exames"><a href="#valor_total_exames" data-toggle="tab"><i class="icon-list-alt"></i> Valor Total Exames</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="exames_realizados">
+                            <legend>Exames Realizados</legend>
+                            <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{RelatorioController.listar()}" var="age">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID Exame"/>
+                                    </f:facet>
+                                    <h:outputText value="#{age.agenda.agendaPK.idExame}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Exame"/>
+                                    </f:facet>
+                                    <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.nome}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data e Hora"/>
+                                    </f:facet>
+                                    <h:outputText value="#{age.agenda.agendaPK.dataHora}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                    </h:outputText>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Paciente"/>
+                                    </f:facet>
+                                    <h:outputText value="#{PacienteController.consultar(age.agenda.agendaPK.idPaciente).paciente.nome}"/>
+                                </h:column>
+
+                            </h:dataTable>
+                        </div>
+                        <div class="tab-pane" id="valor_total_exames">
+                            <legend>Valor total dos Exames</legend>
+                            <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{RelatorioController.listar()}" var="age">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID Exame"/>
+                                    </f:facet>
+                                    <h:outputText value="#{age.agenda.agendaPK.idExame}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Exame"/>
+                                    </f:facet>
+                                    <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.nome}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data e Hora"/>
+                                    </f:facet>
+                                    <h:outputText value="#{age.agenda.agendaPK.dataHora}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                    </h:outputText>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Paciente"/>
+                                    </f:facet>
+                                    <h:outputText value="#{PacienteController.consultar(age.agenda.agendaPK.idPaciente).paciente.nome}"/>
+                                </h:column>
+
+                                <h:column headerClass="colunas">
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor R$"/>
+                                    </f:facet>
+                                    <h:outputText value="#{ExameController.consultar(age.agenda.agendaPK.idExame).exame.valor}"/>
+                                    <!--<h:inputHidden value="#{RelatorioController.addTotal(ExameController.consultar(age.agenda.agendaPK.idExame).exame.valor)}" />-->
+                                </h:column>
+
+                                <f:facet name="footer">
+                                    <h:outputLabel styleClass="pull-right span2" value="Total: #{RelatorioController.total}"/>
+                                </f:facet>
+
+                            </h:dataTable>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                function muda_aba(removeu){
+                    if(removeu != ""){
+                        $("#aba_exames_realizados").removeClass("active");
+                        $("#exames_realizados").removeClass("active");
+                        $("#aba_valor_total_exames").addClass("active");
+                        $("#valor_total_exames").addClass("active");
+                    }
+                }
+            </script>
+        </ui:define>
     </ui:composition>
 </html>
-

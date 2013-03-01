@@ -24,7 +24,7 @@
                                     <div class="control-group">
                                         <label class="control-label required" for="form_cadastro_exame:nome">Nome: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{ExameController.exame.nome}" id="nome" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                            <h:inputText value="#{ExameController.exame.nome}" id="nome" required="true" requiredMessage="Digite o nome" maxlength="40" /> <h:message for="nome" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -32,7 +32,9 @@
                                         <div class="controls">
                                             <div class="input-prepend">
                                             <span class="add-on">R$</span>
-                                            <h:inputText value="#{ExameController.exame.valor}" id="valor" required="true" style="width: 88%"/> <h:message for="valor" styleClass="alert alert-error" />
+                                            <h:inputText value="#{ExameController.exame.valor}" id="valor" required="true" style="width: 88%">
+                                                <f:convertNumber maxFractionDigits="3" minFractionDigits="2" minIntegerDigits="1" maxIntegerDigits="6" groupingUsed="false" />
+                                            </h:inputText> <h:message for="valor" styleClass="alert alert-error" />
                                             </div>
                                         </div>
                                     </div>
@@ -67,9 +69,11 @@
 
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Valor"/>
+                                                <h:outputText value="Valor (R$)"/>
                                             </f:facet>
-                                            <h:outputText value="#{exa.exame.valor}" />
+                                            <h:outputText value="#{exa.exame.valor}" >
+                                                <f:convertNumber maxFractionDigits="3" minFractionDigits="2" minIntegerDigits="1" maxIntegerDigits="6" groupingUsed="false" />
+                                            </h:outputText>
                                         </h:column>
 
                                         <h:column headerClass="coluna_vazia">
@@ -104,6 +108,7 @@
                 }
                 $(document).ready(function () {
                     muda_aba("#{param['removeu']}");
+                    add_atributo_form("form_cadastro_exame", "nome", "placeholder", "Digite o nome");
                 });
             </script>
         </ui:define>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.html">
+        <ui:define name="conteudo">
+            <h:form id="form_consulta_relatorio" styleClass="form-horizontal">
+                <fieldset>
+                    <legend>Consulta Relatório</legend>
+                    <div class="control-group">
+                        <label class="control-label required" for="form_consulta_relatorio:dataInicial">Data Inicial: </label>
+                        <div class="controls">
+                            <h:inputText value="#{RelatorioController.dataInicial}" id="dataInicial" required="true" requiredMessage="Digite a data inicial" maxlength="10" >
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                            </h:inputText> <h:message for="dataInicial" styleClass="alert alert-error" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label required" for="form_consulta_relatorio:dataFinal">Data Final: </label>
+                        <div class="controls">
+                            <h:inputText value="#{RelatorioController.dataFinal}" id="dataFinal" required="true" requiredMessage="Digite a data final" maxlength="10" >
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                            </h:inputText> <h:message for="dataFinal" styleClass="alert alert-error" />
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="control-group">
+                    <div class="controls">
+                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                        <h:outputText value=" "/> 
+                        <h:commandButton styleClass="btn" action="#{RelatorioController.consultar}" value="Consultar"/>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                $(document).ready(function () {
+                    add_mascara_form("form_consulta_relatorio", "dataInicial", "99/99/9999 99:99"); //dd/MM/yyyy HH:mm
+                    add_mascara_form("form_consulta_relatorio", "dataFinal", "99/99/9999 99:99"); //dd/MM/yyyy HH:mm
+                    add_atributo_form("form_consulta_relatorio", "dataInicial", "placeholder", "dd/mm/aaaa hh:mm");
+                    add_atributo_form("form_consulta_relatorio", "dataFinal", "placeholder", "dd/mm/aaaa hh:mm");
+                });
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

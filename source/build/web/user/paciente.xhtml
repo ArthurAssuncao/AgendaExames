@@ -24,13 +24,13 @@
                                     <div class="control-group">
                                         <label class="control-label required" for="form_cadastro_paciente:nome">Nome: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.nome}" id="nome" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                            <h:inputText value="#{PacienteController.paciente.nome}" id="nome" required="true" requiredMessage="Digite o nome" maxlength="60" /> <h:message for="nome" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label required" for="form_cadastro_paciente:data_nascimento">Data de Nascimento: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.dataNasc}" id="data_nascimento" required="true" requiredMessage="Digite a data de nascimento" >
+                                            <h:inputText value="#{PacienteController.paciente.dataNasc}" id="data_nascimento" required="true" requiredMessage="Digite a data de nascimento" maxlength="10" >
                                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:inputText> <h:message for="data_nascimento" styleClass="alert alert-error" />
                                         </div>
@@ -38,19 +38,19 @@
                                     <div class="control-group">
                                         <label class="control-label" for="form_cadastro_paciente:logradouro">Logradouro: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.logradouro}" id="logradouro" /> <h:message for="logradouro" styleClass="alert alert-error" />
+                                            <h:inputText value="#{PacienteController.paciente.logradouro}" id="logradouro" maxlength="60" /> <h:message for="logradouro" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="form_cadastro_paciente:numero">Número: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.numero}" id="numero" /> <h:message for="numero" styleClass="alert alert-error" />
+                                            <h:inputText value="#{PacienteController.paciente.numero}" id="numero" maxlength="10" /> <h:message for="numero" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="form_cadastro_paciente:bairro">Bairro: </label>
                                         <div class="controls">
-                                            <h:inputText value="#{PacienteController.paciente.bairro}" id="bairro" /> <h:message for="bairro" styleClass="alert alert-error" />
+                                            <h:inputText value="#{PacienteController.paciente.bairro}" id="bairro" maxlength="60" /> <h:message for="bairro" styleClass="alert alert-error" />
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -109,7 +109,7 @@
                             <legend>Listagem de Pacientes</legend>
                             <div>
                                 <h:form id="form_lista_pacientes">
-                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{PacienteController.listar()}" var="pac" columnClasses="span1,,span3,,span1,span2,span2,span2,span1,span1">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{PacienteController.listar()}" var="pac" columnClasses="span1,span2,span3,,span1,span2,span2,span2,span1,span1">
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="ID"/>
@@ -201,6 +201,12 @@
                 $(document).ready(function () {
                     muda_aba("#{param['removeu']}");
                     add_mascara_form("form_cadastro_paciente", "data_nascimento", "99/99/9999");
+                    add_atributo_form("form_cadastro_paciente", "nome", "placeholder", "Digite o nome");
+                    add_atributo_form("form_cadastro_paciente", "data_nascimento", "placeholder", "dd/mm/aaaa");
+                    add_atributo_form("form_cadastro_paciente", "logradouro", "placeholder", "Digite o logradouro");
+                    add_atributo_form("form_cadastro_paciente", "numero", "placeholder", "Digite o número");
+                    add_atributo_form("form_cadastro_paciente", "bairro", "placeholder", "Digite o bairro");
+                    add_atributo_form("form_cadastro_paciente", "cidade", "placeholder", "Digite a cidade");
                 });
             </script>
         </ui:define>

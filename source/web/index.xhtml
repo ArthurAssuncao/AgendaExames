@@ -15,13 +15,13 @@
                         <div class="control-group"> 
                             <label class="control-label required" for="form_login:login">Login: </label>
                             <div class="controls">
-                                <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" requiredMessage="Digite seu nome de usuario" /> <h:message for="login" styleClass="alert alert-error" />
+                                <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" requiredMessage="Digite seu nome de usuario" maxlength="50" /> <h:message for="login" styleClass="alert alert-error" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label required" for="form_login:senha">Senha: </label>
                             <div class="controls">
-                                <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true"  requiredMessage="Digite sua senha" />  <h:message for="senha" styleClass="alert alert-error" />
+                                <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true"  requiredMessage="Digite sua senha" maxlength="50" />  <h:message for="senha" styleClass="alert alert-error" />
                                 <span></span><h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
                             </div>
                         </div>

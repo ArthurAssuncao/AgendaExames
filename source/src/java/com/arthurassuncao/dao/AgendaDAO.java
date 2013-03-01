@@ -7,6 +7,7 @@ package com.arthurassuncao.dao;
 import com.arthurassuncao.model.Agenda;
 import com.arthurassuncao.model.AgendaPK;
 import com.arthurassuncao.util.ConexaoBD;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -119,5 +120,26 @@ public class AgendaDAO implements InterfaceDAO<Agenda, AgendaPK> {
             session.close();
         }
         return false;
+    }
+    
+    public List<Agenda> buscar(Date dataInicial, Date dataFinal){
+        try{
+            session = ConexaoBD.getInstance();
+            Query q = session.createQuery("SELECT a FROM Agenda a WHERE dataHora BETWEEN :dataInicial AND :dataFinal");
+            System.out.println("dataInicial: " + dataInicial);
+            q.setParameter("dataInicial", dataInicial);
+            q.setParameter("dataFinal", dataFinal);
+
+            List<Agenda> agendas = q.list();
+  
+            return agendas;
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+        finally{
+            session.close();
+        }
     }
 }

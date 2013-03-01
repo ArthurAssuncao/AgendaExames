@@ -9,6 +9,7 @@ import com.arthurassuncao.dao.AgendaDAO;
 import com.arthurassuncao.model.Agenda;
 import com.arthurassuncao.model.AgendaPK;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -101,16 +102,25 @@ public class AgendaController implements IControllerDAO<AgendaController, Agenda
         InterfaceDAO<Agenda, AgendaPK> agendaDao = new AgendaDAO();
         if (agendaDao.excluir(agenda)) {
             return "removeu_agenda";
-        }
-        else {
+        } else {
             return "nao_removeu_agenda";
         }
     }
-    
+
     @Override
     public AgendaController consultar(AgendaPK chave) {
         InterfaceDAO<Agenda, AgendaPK> agendaDao = new AgendaDAO();
         Agenda agenda = agendaDao.consultar(chave);
         return new AgendaController(agenda);
+    }
+
+    public List<AgendaController> buscar(Date dataInicial, Date dataFinal) {
+        AgendaDAO agendaDao = new AgendaDAO();
+        List<Agenda> agendas = agendaDao.buscar(dataInicial, dataFinal);
+        List<AgendaController> agendasController = new ArrayList<AgendaController>();
+        for (Agenda a : agendas) {
+            agendasController.add(new AgendaController(a));
+        }
+        return agendasController;
     }
 }
