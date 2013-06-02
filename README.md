@@ -1,7 +1,7 @@
 #Sistema de Agendamento de Exames
 
 Sistema de Agendamento de Exames Clínicos com as funções de cadastrar, alterar e excluir médico, exame e paciente, além de permitir o agendamento de exames e salvar o diagnóstico do exame.<br />
-Desenvolvido em JSF e Hibernate, utilizando o modelo de desenvolvimento MVC. Apresentado como Trabalho para a disciplina de Desenvolvimento de Aplicações Web do 4º período do curso Tecnologia em Sistemas para Internet.<br />
+Desenvolvido em JSF e Hibernate, utilizando o modelo de desenvolvimento MVC. Apresentado como Trabalho para a disciplina de **Desenvolvimento de Aplicações Web** do 4º período do curso **Tecnologia em Sistemas para Internet**.<br />
 [Especificação do Trabalho](https://github.com/ArthurAssuncao/AgendaExames/raw/master/Especificacao/Trabalho_Final_Java_JSF-Hibernate.pdf)
 
 ##Leia-me:
